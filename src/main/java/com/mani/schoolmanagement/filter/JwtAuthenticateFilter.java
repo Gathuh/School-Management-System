@@ -29,8 +29,7 @@ public class JwtAuthenticateFilter extends OncePerRequestFilter {
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
         String authHeader = request.getHeader("Authorization");
-
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")){
             // Allow /register and /login without token
             if (request.getRequestURI().equals("/register") || request.getRequestURI().equals("/login")) {
                 filterChain.doFilter(request, response);
@@ -44,7 +43,7 @@ public class JwtAuthenticateFilter extends OncePerRequestFilter {
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             User user = new User(); // Add this line
-            user.setUserName(userDetails.getUsername()); // Add this line
+            user.setUsername(userDetails.getUsername()); // Add this line
             if (jwtService.isValid(token, user)) { // Now 'user' is defined
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities()

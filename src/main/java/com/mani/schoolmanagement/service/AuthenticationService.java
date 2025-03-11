@@ -22,7 +22,7 @@ public class AuthenticationService {
         User user = new User();
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
-        user.setUserName(request.getUsername());
+        user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(request.getRole());
 
@@ -39,7 +39,7 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        User user =repository.findByUserName(request.getUsername()).orElseThrow();
+        User user =repository.findByUsername(request.getUsername()).orElseThrow();
         String token =jwtService.generateToken(user);
         return new AuthenticationResponse(token);
     }
