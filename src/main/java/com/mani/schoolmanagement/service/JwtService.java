@@ -41,7 +41,7 @@ public class JwtService {
         Claims claims=extraAllClaims(token);
         return resolver.apply(claims);
     }
-    private final String SECRET_KEY = "eyJhbGciOiJIUzI1NiJ9.ew0KICAic3ViIjogIjEyMzQ1Njc4OTAiLA0KICAibmFtZSI6ICJBbmlzaCBOYXRoIiwNCiAgImlhdCI6IDE1MTYyMzkwMjINCn0.hjug4RAC1E_A0SH9IPMxtkqFOe__g_AZth6NVME1k-c";
+    private final String SECRET_KEY = "b8d67647ec343d732a7f1426a0f5012ac6a76840afa1f22be5ffc5c4143c42c9";
     private Claims extraAllClaims (String token){
         return Jwts
                 .parser()

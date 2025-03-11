@@ -2,5 +2,6 @@ package com.mani.schoolmanagement.model;
 
 public enum Role {
     STUDENT,
-    ADMIN
+    ADMIN,
+    USER
 }

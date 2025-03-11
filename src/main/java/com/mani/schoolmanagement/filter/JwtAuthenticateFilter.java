@@ -31,8 +31,11 @@ public class JwtAuthenticateFilter extends OncePerRequestFilter {
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response);
-            return;
+            // Allow /register and /login without token
+            if (request.getRequestURI().equals("/register") || request.getRequestURI().equals("/login")) {
+                filterChain.doFilter(request, response);
+                return;
+            }
         }
 
         String token = authHeader.substring(7);
